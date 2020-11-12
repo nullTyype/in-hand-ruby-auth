@@ -1,4 +1,4 @@
-# README
+# Rails Simple Auth
 
 Rails authentication method without using external rails libs.
 
