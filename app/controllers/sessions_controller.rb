@@ -5,6 +5,9 @@ class SessionsController < ApplicationController
   def new
   end
 
+  def login
+  end
+
   def create
 
     @user = User.find_by(username: params[:username])
@@ -13,7 +16,7 @@ class SessionsController < ApplicationController
 
       session[:user_id] = @user.id
 
-      redirect_to '/welcome'
+      redirect_to '/authorized'
 
     else
 
@@ -25,10 +28,13 @@ class SessionsController < ApplicationController
   def page_requires_login
   end
 
-  def login
-  end
-
-  def welcome
+  def logout
+      if session[:user_id]
+        session[:user_id] = nil
+        redirect_to '/login'
+      else 
+        redirect_to '/welcome'
+      end
   end
 
 end
